@@ -51,9 +51,13 @@ class BeersController < ApplicationController
     end
   end
 
-  def favorite_beer
+  #Add the favorite beer of current user
+  def add_favorite_beer
     begin
-      favorite = FavoriteBeer.find_by(user_id: @current_user.id)
+      #Check current user have a favorite beer
+      favorite = @current_user.favorite_beer
+
+      #Have favorite beer ? update : create
       if favorite
         favorite.update!(beer_id: params[:id])
       else
@@ -63,7 +67,16 @@ class BeersController < ApplicationController
         favorite.save!
       end
 
+      render json: FavoriteBeerSerializer.new(favorite).data
+    rescue StandardError => e
+      message = e.message
+    end
+  end
 
+  #Get favorite beer of current user
+  def get_favorite_beer
+    begin
+      favorite = @current_user.favorite_beer
       render json: FavoriteBeerSerializer.new(favorite).data
     rescue StandardError => e
       message = e.message
