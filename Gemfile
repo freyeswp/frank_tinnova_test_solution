@@ -37,6 +37,12 @@ gem 'jwt'
 # Use Active Model Serializers
 gem 'active_model_serializers', '~> 0.10.0'
 
+#User json for convert Faraday response
+gem 'json'
+
+
+gem 'fast_jsonapi'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
