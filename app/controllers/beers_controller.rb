@@ -8,6 +8,13 @@ class BeersController < ApplicationController
   def index
     begin
       beers = @current_user.beers
+      if params[:name].present?
+        beers = beers.where(name: params[:name])
+      end
+      if params[:abv].present?
+        beers = beers.where(abv: params[:abv])
+      end
+
       render json: BeerSerializer.new(beers).collection_attr_array
     rescue StandardError => e
         message = e.message
