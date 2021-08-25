@@ -7,4 +7,16 @@ class BeerSerializer < MainSerializer
       date: beer.seen_at.strftime("%d/%m/%Y")
     }
   end
+
+  attribute :favorite do |beer|
+
+    favorite_beer = beer.favorite_beer
+
+    if beer.favorite_beer
+      favorite_beer = true
+    else
+      favorite_beer =  false
+    end
+
+  end
 end

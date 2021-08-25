@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   post 'auth/login', to: 'authentication#login'
 
   resources :beers
+  post '/beer/:id/favorite', to: 'beers#favorite_beer'
 end
