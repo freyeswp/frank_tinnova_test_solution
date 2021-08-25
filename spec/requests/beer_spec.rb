@@ -16,6 +16,7 @@ describe "GET Beers", type: :request do
   end
 end
 
+#Add the favorite beer of current user
 describe "POST favorite beer", type: :request do
   it 'add a favorite beer of the current user' do
     post '/beers/1/favorite', :headers => {'Authorization'=>'Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Mjk4OTgzNDQsImlkIjoxLCJuYW1lIjoiQWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIn0.0AEJ-sO3Egqew63Z254uYnZTOa4l2Ihe57aJJiXQ6x8'}
@@ -23,6 +24,7 @@ describe "POST favorite beer", type: :request do
   end
 end
 
+#Retrive the favorite beer of current user
 describe "GET favorite beer", type: :request do
   it 'get the favorite beer of the current user' do
     get '/favorite_beer', :headers => {'Authorization'=>'Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2Mjk4OTgzNDQsImlkIjoxLCJuYW1lIjoiQWRtaW4iLCJ1c2VybmFtZSI6ImFkbWluIn0.0AEJ-sO3Egqew63Z254uYnZTOa4l2Ihe57aJJiXQ6x8'}
