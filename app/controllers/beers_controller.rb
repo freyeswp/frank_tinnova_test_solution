@@ -7,7 +7,8 @@ class BeersController < ApplicationController
   #Get all beers in table Beer
   def index
     begin
-
+      beers = @current_user.beers
+      render json: BeerSerializer.new(beers).collection_attr_array
     rescue StandardError => e
         message = e.message
     end
@@ -30,10 +31,11 @@ class BeersController < ApplicationController
       beer.description = data[0]["description"]
       beer.abv         = data[0]["abv"]
       beer.seen_at     = DateTime.now
+      beer.user_id     =@current_user.id
       beer.save!
 
       payload = {beer: BeerSerializer.new(beer).data}
-      render json: payload
+      render json: BeerSerializer.new(beer).data
     rescue StandardError => e
       message = e.message
     end
